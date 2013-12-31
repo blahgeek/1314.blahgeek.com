@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%">
+<html lang="zh" style="height: 100%">
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="assert/bootstrap.min.css">
@@ -45,34 +45,36 @@
                     maxSize: 30,
                     newOn: 300
                 });
-                showline = function(n){
-                    $line = $('#line'+n);
-                    if($line.length){
-                        var strings = [$line.attr('data-s1'), ];
-                        if($line.attr('data-s2'))
-                            strings.push($line.attr('data-s2'));
-                        $('#line'+n).typed({
+                showoneline = function(){
+                    $lines = $('.line:not(.complete)');
+                    if($lines.length){
+                        $line = $($lines[0]);
+                        var strings = [];
+                        for(var i = 1 ; ; i += 1){
+                            var tmp_str = $line.attr('data-s'+i);
+                            if(tmp_str) strings.push(tmp_str);
+                            else break;
+                        }
+                        $line.typed({
                             strings: strings,
                             typeSpeed: 80,
                             backDelay: 500,
                             callback: function(){
                                 setTimeout(function(){
+                                    $line.addClass('complete');
                                     $line.next('span').hide();
-                                    showline(n+1);
+                                    showoneline();
                                 }, 500);
                             }
                         });
                     }
                     else{
                         setTimeout(function(){
-                            $('h1.lefttext').show(1000);
-                            $('h1.righttext').show(1000);
+                            $('h1.mytext').show(1000);
                         }, 2000);
                     }
                 };
-                setTimeout(function(){
-                    showline(1);
-                }, 1000);
+                setTimeout(showoneline, 3000);
             });
         </script>
     </head>
@@ -80,25 +82,26 @@
         <div class="container">
             <div class="row" id="main">
                 <div class="col-xs-6" style="text-align: right">
-                    <h1 class="mytext lefttext">13</h1>
-                    <p><span class="lefttext" id="line1" data-s1="小爷~" data-s2="唔，亲爱的~"></span></p>
-                    <p><span class="lefttext" id="line2" data-s1="似乎就在这样忙碌的节奏中，"></span></p>
-                    <p><span class="lefttext" id="line3" data-s1="2013年就快要过去了…"></span></p>
-                    <p><span class="lefttext" id="line4" data-s1="仔细想想，这一年真的发生了好多事情"></span></p>
-                    <p><span class="lefttext" id="line5" data-s1="第一次拿到工资，第一次被采访，第一次…"></span></p>
-                    <p><span class="lefttext" id="line6" data-s1="但是，更重要的是，"></span></p>
-                    <p><span class="lefttext" id="line7" data-s1="我遇到你，找到了我的另一半"></span></p>
-                    <p><span class="lefttext" id="line8" data-s1="所以我变得更加坚强，更加自信，更加幸福"></span></p>
-                    <p><span class="lefttext" id="line9" data-s1="2013年"></span></p>
-                    <p><span class="lefttext" id="line10" data-s1="亲爱的"></span></p>
-                    <p><span class="lefttext" id="line11" data-s1="感谢有你"></span></p>
+                    <h1 class="mytext">13</h1>
+                    <p><span class="line" data-s1="小爷~" data-s2="唔，亲爱的~"></span></p>
+                    <p><span class="line" data-s1="似乎就在这样忙碌的节奏中"></span></p>
+                    <p><span class="line" data-s1="2013年就快要过去了"></span></p>
+                    <p><span class="line" data-s1="仔细想想，这一年真的发生了好多事情"></span></p>
+                    <p><span class="line" data-s1="第一次拿到工资，第一次被采访，第一次…"></span></p>
+                    <p><span class="line" data-s1="但是，更重要的是"></span></p>
+                    <p><span class="line" data-s1="我遇到你"></span></p>
+                    <p><span class="line" data-s1="我找到了我未来的另一半"></span></p>
+                    <p><span class="line" data-s1="所以我变得更加坚强，更加自信，更加幸福"></span></p>
+                    <p><span class="line" data-s1="2013年"></span></p>
+                    <p><span class="line" data-s1="亲爱的"></span></p>
+                    <p><span class="line" data-s1="感谢有你"></span></p>
                 </div>
                 <div class="col-xs-6" style="text-align: left">
-                    <h1 class="mytext righttext">14</h1>
-                    <p><span class="lefttext" id="line12" data-s1="明天就是2014年咯"></span></p>
-                    <p><span class="lefttext" id="line13" data-s1="元旦快乐~"></span></p>
-                    <p><span class="lefttext" id="line14" data-s1="祝我们幸福"></span></p>
-                    <p><span class="lefttext" id="line15" data-s1="mua~"></span></p>
+                    <h1 class="mytext">14</h1>
+                    <p><span class="line" data-s1="明天就是2014年咯"></span></p>
+                    <p><span class="line" data-s1="元旦快乐~"></span></p>
+                    <p><span class="line" data-s1="祝我们幸福"></span></p>
+                    <p><span class="line" data-s1="mua~"></span></p>
                 </div>
             </div>
         </div>
