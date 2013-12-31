@@ -58,7 +58,7 @@
                         }
                         $line.typed({
                             strings: strings,
-                            typeSpeed: 80,
+                            typeSpeed: 100,
                             backDelay: 500,
                             callback: function(){
                                 setTimeout(function(){
@@ -76,10 +76,12 @@
                     }
                 };
                 setTimeout(showoneline, 3000);
+                var sound = new Audio('/bg/music.mp3');
+                sound.play();
             });
         </script>
     </head>
-    <body style="">
+    <body>
         <div class="container">
             <div class="row" id="main">
                 <div class="col-xs-6" style="text-align: right">
